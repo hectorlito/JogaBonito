@@ -1,0 +1,30 @@
+{
+  "name": "jogabonito",
+  "version": "1.0.0",
+  "description": "App to create and track pick up games",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hectorlito/JogaBonito.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hectorlito/JogaBonito/issues"
+  },
+  "homepage": "https://github.com/hectorlito/JogaBonito#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "method-override": "^2.3.10",
+    "mongoose": "^5.0.1",
+    "morgan": "^1.9.0",
+    "pretty-error": "^2.1.1",
+    "session": "^0.1.0"
+  }
+}

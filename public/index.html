@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="Joga-app">
+<head>
+
+  <meta charset="utf-8">
+
+  <title>Joga Bonito</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
+  <script src="https://use.fontawesome.com/510b786253.js"></script>
+  <script src="/js/app.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body ng-controller="MainController as ctrl">
+
+
+
+
+  <h1>Joga Bonito</h1>
+  <div class="">
+    <div ng-include="'/js/partials/LoggedIn.html'" ng-if='ctrl.user.logged === true'></div>
+	</div>
+  <div ng-include="'/js/partials/nav.html'"></div>
+		<div ng-if="ctrl.logged = true" ng-include="'/js/partials/auth.html'"></div>
+
+	</body>
+</html>
