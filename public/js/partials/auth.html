@@ -1,0 +1,27 @@
+<div ng-if='!ctrl.user.logged'>
+
+  <div ng-if="ctrl.LoginBox == true">
+    <p>Log In</p>
+    <form ng-submit='ctrl.loginUser()'>
+      <input type="text" placeholder="Username" ng-model="ctrl.loginForm.username" />
+      <input type="password" placeholder="Password" ng-model="ctrl.loginForm.password" />
+      <input class="button" type="submit" value="Log In" />
+    </form>
+    <p>Don't have an account? <span ng-click="ctrl.LoginBox = false">Register</span></p>
+  </div>
+  <div ng-if="ctrl.LoginBox == false">
+    <p>Register</p>
+    <form ng-submit='ctrl.registerUser()'>
+      <input type="text" placeholder="Username" ng-model="ctrl.newUserForm.username" />
+      <input type="password" placeholder="Password" ng-model="ctrl.newUserForm.password" />
+      <input type="text" ng-model="ctrl.newUserForm.avatar" placeholder="Image URL">
+      <input class="button" type="submit" value="Register" />
+    </form>
+    <p>Already have an account? <span ng-click="ctrl.LoginBox = true">Login</span></p>
+
+  </div>
+
+  <form ng-if='ctrl.user.logged' ng-submit='ctrl.logout()'>
+    <input type="submit" value="logout" value="Register" />
+  </form>
+</div>
