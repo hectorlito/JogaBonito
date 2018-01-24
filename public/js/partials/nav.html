@@ -1,27 +1,10 @@
 <div class="navbar">
-  <a href="" ng-click='ctrl.openCreate()'>Start a game</a>
-<a href="" ng-click='ctrl.openGames()'>All games</a>
+<a href="" ng-click='ctrl.openGames()'>All Games</a>
+<a href="" ng-click='ctrl.openCreate()'>Create a game</a>
 <a href="" ng-click='ctrl.openPlayers()'>All Players</a>
-<a href="" ng-click='ctrl.LogReg()'>Sign In</a>
-</div>
-
-<div class="behrgood" ng-if="ctrl.user.logged == true">
-  <div ng-if="ctrl.shownav === false" >
-    <div ng-click="ctrl.openNav();">
-sdsdd
-    </div>
-  </div>
-
-  <div ng-if="ctrl.shownav">
-    <div ng-click="ctrl.closeNav()">
-
-    </div>
-  </div>
-  <div ng-show="ctrl.shownav">
-
-    <p ng-click='ctrl.openCreate()' >Start a game</p>
-    <p ng-click='ctrl.openGames()'>All games</p>
-    <p ng-click='ctrl.openPlayers()'>All Players</p>
-
-  </div>
+<a href="" ng-click='ctrl.openlogreg()'>Sign In</a>
+  <h3 class="name">Hi, {{ctrl.user.username}} !</h3>
+  <form ng-if='ctrl.user.logged' ng-submit='ctrl.logoutUser()'>
+    <input class="button" type="submit" value="Logout" />
+  </form>
 </div>

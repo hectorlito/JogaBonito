@@ -5,14 +5,14 @@
     <title></title>
   </head>
   <body>
-    <h4>Hi, {{ctrl.user.username}} !</h3>
-      <form ng-if='ctrl.user.logged' ng-submit='ctrl.logoutUser()'>
+    <!-- <h4>Hi, {{ctrl.user.username}} !</h3> -->
+      <!-- <form ng-if='ctrl.user.logged' ng-submit='ctrl.logoutUser()'>
         <input class="button logout" type="submit" value="Logout" />
-      </form>
-      
+      </form> -->
+
     <div ng-include=" '/js/partials/profile.html' "></div>
     <div ng-include=" '/js/partials/all.html' "></div>
-
+    <div ng-include=" '/js/partials/createagame.html' "></div>
 
   </body>
 </html>

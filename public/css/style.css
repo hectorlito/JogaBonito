@@ -8,7 +8,7 @@
 }
 
 /* Links inside the navbar */
-.navbar a {
+.navbar a, .name, .logout{
     float: left;
     display: block;
     color: #f2f2f2;

@@ -1,1 +1,21 @@
-hi
+<div ng-if="ctrl.players">
+  <h3 class="close" ng-click="ctrl.closePlayers()">x</h3>
+  <h3>View all players</h3>
+
+
+<div >
+  <div >
+
+    <h2>All Players</h2>
+
+    <h3 class="close" ng-click="ctrl.closePlayers()">x</h3>
+    <div class="all-players">
+      <div class="one-player" ng-repeat='player in ctrl.Players'>
+        <img class="profile-img" ng-src="{{player.avatar}}" alt="profile">
+        <h3>{{player.username}}</h3>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>

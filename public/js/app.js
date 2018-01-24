@@ -5,26 +5,36 @@ app.controller("MainController", ["$http", function($http) {
   // ctrl variables
   this.hello = "Hello World";
   this.profile = false;
-  this.about = false;
-  this.contact= false;
   this.useredit= false;
   this.players = false;
-  this.LoginBox = true;
+  this.LoginBox = false;
   this.logged = false;
-  this.logreg = false;
-
+  this.clickSignIn = false;
+  this.createGame= false;
+  this.ballers= false;
 
   // ctrl functions
-  //---------------------openNav-----------------------//
-  this.openNav = () => {
-    document.getElementById("mySidenav").style.width = "250px";
-    this.shownav = true;
+//-------------Login Modal------------------
+  this.openlogreg = () => {
+    this.clickSignIn = true;
+    console.log("i clicked on sign in", this.clickSignIn);
+    this.LoginBox = true;
+    console.log("login should open:", this.LoginBox);
   }
 
-  this.closeNav = () => {
-    document.getElementById("mySidenav").style.width = "0";
-    this.shownav = false;
+  this.closelogreg = () => {
+    this.clickSignIn = false;
   }
+//--------------Create a Game modal------------
+  this.openCreate = () => {
+    this.createGame = true;
+    console.log("i clicked on creategame: ", this.createGame);
+  }
+
+  this.closeCreate = () => {
+    this.createGame = false;
+  }
+
 
   //------------ProfileModal---------------------//
   this.openProfile = () => {
@@ -123,6 +133,7 @@ app.controller("MainController", ["$http", function($http) {
       this.user.logged=true;
       this.loginForm = {};
       this.error = null;
+      this.closelogreg();
     }, ex => {
       this.loginError = ex.statusText;
     })
@@ -156,5 +167,17 @@ console.log(this.Players);
 }
   this.hello = "Hello World";
 
+
+//--------------games-----------
+this.Allgames = () => {
+  $http({
+    url:'/sessions/all',
+    method: 'get',
+  }).then((response) => {
+    this.Players = response.data
+console.log(this.Players);
+  })
+}
+  this.hello = "Hello World";
 
 }]); //end MainController
