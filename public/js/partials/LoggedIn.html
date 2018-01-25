@@ -5,14 +5,18 @@
     <title></title>
   </head>
   <body>
-    <!-- <h4>Hi, {{ctrl.user.username}} !</h3> -->
-      <!-- <form ng-if='ctrl.user.logged' ng-submit='ctrl.logoutUser()'>
-        <input class="button logout" type="submit" value="Logout" />
-      </form> -->
-
     <div ng-include=" '/js/partials/profile.html' "></div>
     <div ng-include=" '/js/partials/all.html' "></div>
     <div ng-include=" '/js/partials/createagame.html' "></div>
+
+<div>
+  <h2>All Games</h2>
+    <div class="allGames" ng-repeat='game in ctrl.games'>
+      
+
+    </div>
+</div>
+
 
   </body>
 </html>

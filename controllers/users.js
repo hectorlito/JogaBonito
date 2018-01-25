@@ -37,7 +37,7 @@ router.put('/:id', async (req, res) => {
     console.log(e);
     res.status(400).json({err: e.message});
   }
-})
+});
 
 router.delete('/:id', async (req, res) => {
   try{

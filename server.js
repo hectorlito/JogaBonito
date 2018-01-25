@@ -42,6 +42,7 @@ app.use(express.static('public'));
 //Routes
 const usersController = require('./controllers/users');
 const sessionsController = require('./controllers/sessions');
+const gamesController = require('./controllers/games');
 
 // enable sessions
 app.use(session({
@@ -54,6 +55,7 @@ app.use(session({
 // enable controllers
 app.use('/users', usersController);
 app.use('/sessions', sessionsController);
+app.use('/games', gamesController);
 
 
 app.listen(PORT, () => {

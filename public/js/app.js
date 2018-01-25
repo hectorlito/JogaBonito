@@ -6,12 +6,14 @@ app.controller("MainController", ["$http", function($http) {
   this.hello = "Hello World";
   this.profile = false;
   this.useredit= false;
-  this.players = false;
+  this.playersmodal = false;
   this.LoginBox = false;
   this.logged = false;
   this.clickSignIn = false;
   this.createGame= false;
   this.ballers= false;
+  this.games= [];
+  this.gameedit= false;
 
   // ctrl functions
 //-------------Login Modal------------------
@@ -54,7 +56,7 @@ app.controller("MainController", ["$http", function($http) {
   //--------------All Players Modal----------------//
   this.openPlayers = () => {
     if (this.user.logged){
-      this.players = true;
+      this.playersmodal = true;
       this.AllUsers()
     } else {
       this.error= true;
@@ -62,12 +64,14 @@ app.controller("MainController", ["$http", function($http) {
   }
 
   this.closePlayers = () => {
-    this.players = false
+    this.playersmodal = false
   }
   // --------------------------------------------
   // Users/authorization
   this.user = {};
   this.error = null;
+  this.game = {};
+
 
   this.registerUser = () => {
     $http({
@@ -171,13 +175,44 @@ console.log(this.Players);
 //--------------games-----------
 this.Allgames = () => {
   $http({
-    url:'/sessions/all',
+    url:'/',
     method: 'get',
+
   }).then((response) => {
-    this.Players = response.data
-console.log(this.Players);
+    this.games = response.data;
+console.log(this.games);
   })
-}
-  this.hello = "Hello World";
+};
+
+  this.creategames = () => {
+    $http({
+      url:'/games',
+      method: 'post',
+      data: this.newGameForm
+    }).then((response) => {
+      this.games = response.data;
+  console.log(this.games);
+      this.newGameForm = [];
+    }, ex =>{
+      console.log(ex.data.err);
+      this.gameError = 'Incorrect game data?';
+    }).catch(err => this.error = '');
+  };
+
+
+    this.editGame = () => {
+      $http({
+        url: '/game/' + this.game._id,
+        method: 'put',
+        data: this.game
+      }).then((response) => {
+        this.gameedit=false;
+      },(ex) => {
+        console.log(ex.data.err);
+
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
 
 }]); //end MainController
