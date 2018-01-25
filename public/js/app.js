@@ -169,7 +169,7 @@ this.AllUsers = () => {
 console.log(this.Players);
   })
 }
-  this.hello = "Hello World";
+
 
 
 //--------------games-----------
@@ -180,19 +180,19 @@ this.Allgames = () => {
 
   }).then((response) => {
     this.games = response.data;
-console.log(this.games);
+console.log(response.data);
   })
 };
 
-  this.creategames = () => {
+  this.creategames = (newGameForm) => {
     $http({
-      url:'/games',
+      url:'/games/create',
       method: 'post',
-      data: this.newGameForm
+      data: {game: {title: newGameForm.title, type: newGameForm.type, time: newGameForm.time, location: newGameForm.location }}
     }).then((response) => {
       this.games = response.data;
   console.log(this.games);
-      this.newGameForm = [];
+      // this.newGameForm = [];
     }, ex =>{
       console.log(ex.data.err);
       this.gameError = 'Incorrect game data?';
