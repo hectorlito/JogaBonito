@@ -1,51 +1,22 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body> -->
-
-    <div ng-include=" '/js/partials/profile.html' "></div>
-    <div ng-include=" '/js/partials/all.html' "></div>
-    <div ng-include=" '/js/partials/createagame.html' "></div>
+<div ng-include=" '/js/partials/profile.html' ">
+</div>
+<div ng-include=" '/js/partials/all.html' "></div>
+<div ng-include=" '/js/partials/createagame.html' "></div>
 
 <div>
   <h2>All Games</h2>
-    <div class="allGames" ng-repeat='game in ctrl.games'>
-      <h2>{{game.title}}</h2>
-      <h3>{{game.type}}</h3>
-      <h3>{{game.time}}</h3>
-      <h3>{{game.location}}</h3>
-      <h3 class="name">Created by, {{game.username}} !</h3>
-    </div>
+  <div class="allGames" ng-repeat='game in ctrl.games'>
+    <h2>{{game.title}}</h2>
+    <h3>{{game.type}}</h3>
+    <h3>{{game.time}}</h3>
+    <h3>{{game.location}}</h3>
+    <h3 class="name">Created by, {{game.username}} !</h3>
+  </div>
 </div>
 
-<!-- 
-<div id="map" ></div>
 
-
-      <script >
-            window.alert("hi");
-        function initMap() {
-          var myLatLng = {lat: -25.363, lng: 131.044};
-
-          var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: myLatLng
-          });
-
-          var marker = new google.maps.Marker({
-            position: myLatLng,
-            map: map,
-            title: 'Hello World!'
-          });
-        }
-      </script>
-      <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrvfTS9oaWArL-k-KQA9PYATajpZVSpLc&callback=initMap">
-      window.alert("hi");
-      </script> -->
-
-  <!-- </body>
-</html> -->
+<div class="map-container">
+  <ng-map class="gov-map" zoom="10" center="51.5112139, -0.1198244">
+    <map-data load-geo-json="events.json"></map-data>
+  </ng-map>
+</div>

@@ -1,6 +1,5 @@
-const app = angular.module("Joga-app", []);
-// 'ngMap'
-app.controller("MainController", ["$http", function($http) {
+const app = angular.module("Joga-app", ['ngMap']);
+app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
   //begin MainController
   // ctrl variables
   this.hello = "Hello World";
@@ -17,12 +16,11 @@ app.controller("MainController", ["$http", function($http) {
 
 
 
-  // NgMap.getMap().then(function(map) {
-  //   console.log(map.getCenter());
-  //   console.log('markers', map.markers);
-  //   console.log('shapes', map.shapes);
-  // });
-
+  NgMap.getMap().then(function(map) {
+    console.log(map.getCenter());
+    console.log('markers', map.markers);
+    console.log('shapes', map.shapes);
+  });
 
   // ctrl functions
 //-------------Login Modal------------------
