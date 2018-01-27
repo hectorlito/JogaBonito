@@ -1,14 +1,26 @@
 /* The navigation bar */
+.title{
+  height: 100%;
+ width: 100%;
+ display: flex;
+ position: fixed;
+ align-items: center;
+ justify-content: center;
+ font-family: sans-serif;
+}
+
 .navbar {
     overflow: hidden;
-    background-color: #333;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
+    background: #0A002B;
+    /* position: fixed;  */
+    margin: auto;
+    top: 0;
+    width: 50%;
 }
 
 /* Links inside the navbar */
-.navbar a, .name, .logout{
+.navbar a, .logout{
+
     float: left;
     display: block;
     color: #f2f2f2;
@@ -17,6 +29,14 @@
     text-decoration: none;
 }
 
+.name {
+    float: left;
+    display: block;
+    color: #BB0000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
 /* Change background on mouse-over */
 .navbar a:hover {
     background: #ddd;
@@ -27,4 +47,14 @@
 .main {
     margin-top: 30px; /* Add a top margin to avoid content overlay */
 }
-Try it Yourself »
+
+/* #map {
+  height: 100%;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+} */
+/* MODAL */

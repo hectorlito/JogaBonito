@@ -5,6 +5,8 @@ const gameSchema = mongoose.Schema({
   type: { type: String, require: true},
   time: { type: Number, require: true},
   location: { type: String, require: true},
+  latlong: { type: Array, require: true},
+  username: {type: String},
   user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
 

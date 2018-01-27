@@ -1,6 +1,6 @@
 const app = angular.module("Joga-app", []);
-
-app.controller("MainController", ["$http", function($http) {
+// 'ngMap'
+app.controller("MainController", ["$http", function($http, NgMap) {
   //begin MainController
   // ctrl variables
   this.hello = "Hello World";
@@ -14,6 +14,15 @@ app.controller("MainController", ["$http", function($http) {
   this.ballers= false;
   this.games= [];
   this.gameedit= false;
+
+
+
+  // NgMap.getMap().then(function(map) {
+  //   console.log(map.getCenter());
+  //   console.log('markers', map.markers);
+  //   console.log('shapes', map.shapes);
+  // });
+
 
   // ctrl functions
 //-------------Login Modal------------------
@@ -138,6 +147,8 @@ app.controller("MainController", ["$http", function($http) {
       this.loginForm = {};
       this.error = null;
       this.closelogreg();
+      this.initMap();
+      console.log(this.user);
     }, ex => {
       this.loginError = ex.statusText;
     })
@@ -175,7 +186,7 @@ console.log(this.Players);
 //--------------games-----------
 this.Allgames = () => {
   $http({
-    url:'/',
+    url:'/games',
     method: 'get',
 
   }).then((response) => {
@@ -183,14 +194,15 @@ this.Allgames = () => {
 console.log(response.data);
   })
 };
+this.Allgames();
 
   this.creategames = (newGameForm) => {
     $http({
       url:'/games/create',
       method: 'post',
-      data: {game: {title: newGameForm.title, type: newGameForm.type, time: newGameForm.time, location: newGameForm.location }}
+      data: {game: {title: newGameForm.title, type: newGameForm.type, time: newGameForm.time, location: newGameForm.location, user: this.user._id, username: this.user.username, latlng: newGameForm.latlong}}
     }).then((response) => {
-      this.games = response.data;
+      this.games.push(response.data);
   console.log(this.games);
       // this.newGameForm = [];
     }, ex =>{
@@ -214,5 +226,25 @@ console.log(response.data);
         console.log(err);
       })
     }
+
+
+// this.initMap = () => {
+// let myLatLng = {lat: -25.363, lng: 131.044};
+// console.log("clicked??");
+//   const map = new google.maps.Map(document.getElementById('map'), {
+//     zoom: 4,
+//     center: myLatLng
+//   });
+//
+//   const marker = new google.maps.Marker({
+//     position: myLatLng,
+//     map: map,
+//     title: 'Hello World!'
+//
+//   });
+//   console.log("map", map);
+//   console.log("marker", marker);
+// }
+
 
 }]); //end MainController

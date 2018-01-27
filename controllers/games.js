@@ -1,6 +1,10 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const Game = require('../models/games.js');
+const googleMapsClient = require('@google/maps').createClient({
+  key: 'AIzaSyDrvfTS9oaWArL-k-KQA9PYATajpZVSpLc',
+  Promise: Promise
+});
 
 router.get('/', async (req, res) => {
   const game = await Game.find();
@@ -8,25 +12,49 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/create', async (req, res) => {
-  try {
-    const game = await Game.create(req.body);
-    res.status(201).json(game);
-  } catch (e) {
-    console.log(e);
-    res.status(400).json({err: err.message + 'cheeese stand out '
-  });
-}
-});
+      console.log("REQUEST", req.body);
+      try {
+        let formattedAddress;
+        let latlng;
+        await googleMapsClient.geocode({
+            address: req.body.game.location
+            // '1600 Amphitheatre Parkway, Mountain View, CA'
+          }).asPromise()
+          .then(async (response) => {
+            console.log(response.json.results);
+              formattedAddress = response.json.results[0].formatted_address;
+              latlng = [response.json.results[0].geometry.location.lat, response.json.results[0].geometry.location.lng];
+              const game = await Game.create(Object.assign(req.body.game, {
+                location: formattedAddress,
+                latlong: latlng
+              })); res.status(201).json(game);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        }
+        catch (e) {
+          console.log(e);
+          res.status(400).json({
+            err: err.message + 'cheeese stand out '
+          });
+        }
+      });
 
-router.put('/:id', async (req, res) => {
-  try{
-    const updatedGame = await Game.findByIdAndUpdate(req.params.id, req.body, {new: true,set:true});
-    res.status(200).json(updatedGame);
-  } catch (e){
-    console.log(e);
-    res.status(400).json({err: e.message});
-  }
-});
+    router.put('/:id', async (req, res) => {
+      try {
+        const updatedGame = await Game.findByIdAndUpdate(req.params.id, req.body, {
+          new: true,
+          set: true
+        });
+        res.status(200).json(updatedGame);
+      } catch (e) {
+        console.log(e);
+        res.status(400).json({
+          err: e.message
+        });
+      }
+    });
 
 
-module.exports = router;
+    module.exports = router;

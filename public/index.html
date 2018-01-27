@@ -6,20 +6,39 @@
   <meta charset="utf-8">
 
   <title>Joga Bonito</title>
+
+  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrvfTS9oaWArL-k-KQA9PYATajpZVSpLc"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
   <script src="https://use.fontawesome.com/510b786253.js"></script>
+  <!-- <script type="text/javascript" src="bower_components/angular-ui-event/dist/event.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular-ui-map/src/map.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=onGoogleReady"></script> -->
+  <!-- <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script> -->
+
+  <script src="http://maps.google.com/maps/api/js"></script>
   <script src="/js/app.js" charset="utf-8"></script>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body ng-controller="MainController as ctrl">
 
-  <h1>Joga Bonito</h1>
+  <h1 class="title" >Joga Bonito</h1>
   <div class="">
     <div ng-include="'/js/partials/LoggedIn.html'" ng-if='ctrl.user.logged === true'></div>
   </div>
   <div ng-include="'/js/partials/nav.html'"></div>
   <div ng-include="'/js/partials/auth.html'"></div>
+
+
+
+
+
 
 </body>
 
