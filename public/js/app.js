@@ -1,6 +1,6 @@
 const app = angular.module("Joga-app", []);
 // 'ngMap'
-app.controller("MainController", ["$http", function($http, NgMap) {
+app.controller("MainController", ["$http", function($http) {
   //begin MainController
   // ctrl variables
   this.hello = "Hello World";

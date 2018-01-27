@@ -3,8 +3,8 @@
   <div ng-if="ctrl.LoginBox == true">
     <p>Log In</p>
     <form ng-submit='ctrl.loginUser()'>
-      <input type="text" placeholder="Username" ng-model="ctrl.loginForm.username" />
-      <input type="password" placeholder="Password" ng-model="ctrl.loginForm.password" />
+      <input class="input__username" type="text" placeholder="Username" ng-model="ctrl.loginForm.username" />
+      <input class="input__password" type="password" placeholder="Password" ng-model="ctrl.loginForm.password" />
       <input class="button" type="submit" value="Log In" />
     </form>
     <p>Don't have an account? <span ng-click="ctrl.LoginBox = false">Register</span></p>
