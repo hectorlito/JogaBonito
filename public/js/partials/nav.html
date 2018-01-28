@@ -3,9 +3,6 @@
 <a href="" ng-click='ctrl.openCreate()'>Create a game</a>
 <a href="" ng-click='ctrl.openPlayers()'>All Players</a>
 <a href="" ng-click='ctrl.openlogreg()'>Sign In</a>
-
-  <form ng-if='ctrl.user.logged' ng-submit='ctrl.logoutUser()'>
-    <h3 class="name">Hi, {{ctrl.user.username}} !</h3>
-    <input class="button" type="submit" value="Logout" />
-  </form>
+<h3  ng-if='ctrl.user.logged' class="name">Hi, {{ctrl.user.username}} !</h3>
+<a href="#" ng-if='ctrl.user.logged' ng-click='ctrl.logoutUser()'>Logout</a>
 </div>

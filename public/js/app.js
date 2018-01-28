@@ -95,14 +95,15 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
     }).then((response) => {
       console.log('Successful registration');
       // updateUser(response.data);
-      this.logged = true;
       this.user = response.data;
+      this.logged = true;
+      this.user.logged = true;
       this.newUserForm = {};
       this.error = null;
-      this.user.logged = true;
+
+      this.closelogreg();
     }, ex => {
       console.log(ex.data.err);
-      // this.error = ex.statusText;
       this.registerError = 'Incorrect username?';
     }).catch(err => this.error = '');
   };
@@ -140,7 +141,6 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
 
   this.loginUser = () => {
     $http({
-
         url: '/sessions/login',
         method: 'post',
         data: this.loginForm
@@ -153,7 +153,6 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
         this.error = null;
         this.closelogreg();
         this.initMap();
-        console.log(this.user);
       }, ex => {
         this.loginError = ex.statusText;
       })
@@ -182,9 +181,8 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
       method: 'get',
     }).then((response) => {
       this.Players = response.data
-      console.log(this.Players);
     })
-  }
+  };
 
 
 
@@ -196,7 +194,6 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
 
     }).then((response) => {
       this.games = response.data;
-      console.log(response.data);
     })
   };
   this.Allgames();
@@ -218,10 +215,9 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
       }
     }).then((response) => {
       this.games.push(response.data);
-      console.log(this.games);
+      this.closeCreate();
       // this.newGameForm = [];
     }, ex => {
-      console.log(ex.data.err);
       this.gameError = 'Incorrect game data?';
     }).catch(err => this.error = '');
   };
@@ -241,25 +237,5 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
       console.log(err);
     })
   }
-
-
-  // this.initMap = () => {
-  // let myLatLng = {lat: -25.363, lng: 131.044};
-  // console.log("clicked??");
-  //   const map = new google.maps.Map(document.getElementById('map'), {
-  //     zoom: 4,
-  //     center: myLatLng
-  //   });
-  //
-  //   const marker = new google.maps.Marker({
-  //     position: myLatLng,
-  //     map: map,
-  //     title: 'Hello World!'
-  //
-  //   });
-  //   console.log("map", map);
-  //   console.log("marker", marker);
-  // }
-
 
 }]); //end MainController

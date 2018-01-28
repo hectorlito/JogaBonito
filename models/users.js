@@ -5,7 +5,7 @@ const userSchema = mongoose.Schema({
   username: { type: String, unique: true ,required: true },
   avatar: { type: String, default: "https://i.imgur.com/fGi0Yl0.png" },
   password: { type: String, required: true},
-  favPlayer: { type: String, default: "Who is your favorite player?" }
+  favPlayer: { type: String }
 
 });
 

@@ -12,10 +12,11 @@
 
   <div ng-if="ctrl.LoginBox == false" class="signIn">
     <p class="formtitle">Register</p>
-    <form ng-submit='ctrl.registerUser()'>
-      <input type="text" placeholder="Username" ng-model="ctrl.newUserForm.username" />
-      <input type="password" placeholder="Password" ng-model="ctrl.newUserForm.password" />
-      <input type="text" ng-model="ctrl.newUserForm.avatar" placeholder="Image URL">
+    <form ng-submit='ctrl.registerUser()' class="form">
+      <input class="inputBox" type="text" placeholder="Username" ng-model="ctrl.newUserForm.username" />
+      <input class="inputBox" type="password" placeholder="Password" ng-model="ctrl.newUserForm.password" />
+      <input class="inputBox" type="text" ng-model="ctrl.newUserForm.avatar" placeholder="Image URL">
+      <input class="inputBox" type="text" ng-model="ctrl.newUserForm.favPlayer" placeholder="Favorite Player?">
       <input class="button" type="submit" value="Register" />
     </form>
     <p class="formtitle">Already have an account? <span ng-click="ctrl.LoginBox = true">Login</span></p>
