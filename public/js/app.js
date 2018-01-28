@@ -4,17 +4,24 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
   // ctrl variables
   this.hello = "Hello World";
   this.profile = false;
-  this.useredit= false;
+  this.useredit = false;
   this.playersmodal = false;
   this.LoginBox = false;
   this.logged = false;
   this.clickSignIn = false;
-  this.createGame= false;
-  this.ballers= false;
-  this.games= [];
-  this.gameedit= false;
+  this.createGame = false;
+  this.ballers = false;
+  this.games = [];
+  this.gameedit = false;
+  this.currentLocation = '';
 
-
+  navigator
+    .geolocation
+    .getCurrentPosition((res) => {
+      console.log("thsi where i be", res);
+      this.currentLocation =
+      `${res.coords.latitude}, ${res.coords.longitude}`
+    });
 
   NgMap.getMap().then(function(map) {
     console.log(map.getCenter());
@@ -23,7 +30,7 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
   });
 
   // ctrl functions
-//-------------Login Modal------------------
+  //-------------Login Modal------------------
   this.openlogreg = () => {
     this.clickSignIn = true;
     console.log("i clicked on sign in", this.clickSignIn);
@@ -34,7 +41,7 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
   this.closelogreg = () => {
     this.clickSignIn = false;
   }
-//--------------Create a Game modal------------
+  //--------------Create a Game modal------------
   this.openCreate = () => {
     this.createGame = true;
     console.log("i clicked on creategame: ", this.createGame);
@@ -47,12 +54,12 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
 
   //------------ProfileModal---------------------//
   this.openProfile = () => {
-    if (this.user.logged){
+    if (this.user.logged) {
 
-    this.profile = true;
-  }else {
-    this.openlogreg();
-  }
+      this.profile = true;
+    } else {
+      this.openlogreg();
+    }
   }
 
   this.closeProfile = () => {
@@ -62,11 +69,11 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
 
   //--------------All Players Modal----------------//
   this.openPlayers = () => {
-    if (this.user.logged){
+    if (this.user.logged) {
       this.playersmodal = true;
       this.AllUsers()
     } else {
-      this.error= true;
+      this.error = true;
     }
   }
 
@@ -92,7 +99,7 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
       this.user = response.data;
       this.newUserForm = {};
       this.error = null;
-      this.user.logged=true;
+      this.user.logged = true;
     }, ex => {
       console.log(ex.data.err);
       // this.error = ex.statusText;
@@ -107,8 +114,8 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
       method: 'put',
       data: this.user
     }).then((response) => {
-      this.useredit=false;
-    },(ex) => {
+      this.useredit = false;
+    }, (ex) => {
       console.log(ex.data.err);
 
     }).catch((err) => {
@@ -121,10 +128,10 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
       url: '/users/' + this.user._id,
       method: 'DELETE'
     }).then((response) => {
-      this.user=null;
-      this.useredit=false;
+      this.user = null;
+      this.useredit = false;
       this.closeProfile();
-    },(ex) => {
+    }, (ex) => {
       console.log(ex.data.err);
     }).catch((err) => {
       console.log(err);
@@ -134,115 +141,125 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
   this.loginUser = () => {
     $http({
 
-      url: '/sessions/login',
-      method: 'post',
-      data: this.loginForm
-    }).then((response) =>{
-      // updateUser(response.data);
-      this.user = response.data;
-      this.logged = true;
-      this.user.logged=true;
-      this.loginForm = {};
-      this.error = null;
-      this.closelogreg();
-      this.initMap();
-      console.log(this.user);
-    }, ex => {
-      this.loginError = ex.statusText;
-    })
-    .catch(err => this.loginError = 'Something went wrong');
+        url: '/sessions/login',
+        method: 'post',
+        data: this.loginForm
+      }).then((response) => {
+        // updateUser(response.data);
+        this.user = response.data;
+        this.logged = true;
+        this.user.logged = true;
+        this.loginForm = {};
+        this.error = null;
+        this.closelogreg();
+        this.initMap();
+        console.log(this.user);
+      }, ex => {
+        this.loginError = ex.statusText;
+      })
+      .catch(err => this.loginError = 'Something went wrong');
   };
 
 
   this.logoutUser = () => {
     $http({
-      url: '/sessions/logout',
-      method: 'delete'
-    }).then((response) => {
-      user = {};
-      this.logged = false;
-      this.user.logged = false;
-      this.user = null;
-    }, ex => {
-      this.loginError = ex.statusText;
-    })
-    .catch(err => this.loginError = 'Something went wrong');
+        url: '/sessions/logout',
+        method: 'delete'
+      }).then((response) => {
+        user = {};
+        this.logged = false;
+        this.user.logged = false;
+        this.user = null;
+      }, ex => {
+        this.loginError = ex.statusText;
+      })
+      .catch(err => this.loginError = 'Something went wrong');
   };
 
-this.AllUsers = () => {
-  $http({
-    url:'/sessions/all',
-    method: 'get',
-  }).then((response) => {
-    this.Players = response.data
-console.log(this.Players);
-  })
-}
+  this.AllUsers = () => {
+    $http({
+      url: '/sessions/all',
+      method: 'get',
+    }).then((response) => {
+      this.Players = response.data
+      console.log(this.Players);
+    })
+  }
 
 
 
-//--------------games-----------
-this.Allgames = () => {
-  $http({
-    url:'/games',
-    method: 'get',
+  //--------------games-----------
+  this.Allgames = () => {
+    $http({
+      url: '/games',
+      method: 'get',
 
-  }).then((response) => {
-    this.games = response.data;
-console.log(response.data);
-  })
-};
-this.Allgames();
+    }).then((response) => {
+      this.games = response.data;
+      console.log(response.data);
+    })
+  };
+  this.Allgames();
 
   this.creategames = (newGameForm) => {
     $http({
-      url:'/games/create',
+      url: '/games/create',
       method: 'post',
-      data: {game: {title: newGameForm.title, type: newGameForm.type, time: newGameForm.time, location: newGameForm.location, user: this.user._id, username: this.user.username, latlng: newGameForm.latlong}}
+      data: {
+        game: {
+          title: newGameForm.title,
+          type: newGameForm.type,
+          time: newGameForm.time,
+          location: newGameForm.location,
+          user: this.user._id,
+          username: this.user.username,
+          latlng: newGameForm.latlong
+        }
+      }
     }).then((response) => {
       this.games.push(response.data);
-  console.log(this.games);
+      console.log(this.games);
       // this.newGameForm = [];
-    }, ex =>{
+    }, ex => {
       console.log(ex.data.err);
       this.gameError = 'Incorrect game data?';
     }).catch(err => this.error = '');
   };
 
 
-    this.editGame = () => {
-      $http({
-        url: '/game/' + this.game._id,
-        method: 'put',
-        data: this.game
-      }).then((response) => {
-        this.gameedit=false;
-      },(ex) => {
-        console.log(ex.data.err);
+  this.editGame = () => {
+    $http({
+      url: '/game/' + this.game._id,
+      method: 'put',
+      data: this.game
+    }).then((response) => {
+      this.gameedit = false;
+    }, (ex) => {
+      console.log(ex.data.err);
 
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
 
 
-// this.initMap = () => {
-// let myLatLng = {lat: -25.363, lng: 131.044};
-// console.log("clicked??");
-//   const map = new google.maps.Map(document.getElementById('map'), {
-//     zoom: 4,
-//     center: myLatLng
-//   });
-//
-//   const marker = new google.maps.Marker({
-//     position: myLatLng,
-//     map: map,
-//     title: 'Hello World!'
-//
-//   });
-//   console.log("map", map);
-//   console.log("marker", marker);
-// }
+  // this.initMap = () => {
+  // let myLatLng = {lat: -25.363, lng: 131.044};
+  // console.log("clicked??");
+  //   const map = new google.maps.Map(document.getElementById('map'), {
+  //     zoom: 4,
+  //     center: myLatLng
+  //   });
+  //
+  //   const marker = new google.maps.Marker({
+  //     position: myLatLng,
+  //     map: map,
+  //     title: 'Hello World!'
+  //
+  //   });
+  //   console.log("map", map);
+  //   console.log("marker", marker);
+  // }
 
 
 }]); //end MainController

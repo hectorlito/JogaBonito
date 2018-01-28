@@ -5,18 +5,16 @@
 
 <div>
   <h2>All Games</h2>
-  <div class="allGames" ng-repeat='game in ctrl.games'>
+  <div class="allGames" ng-repeat='game in ctrl.games' class="map-container">
     <h2>{{game.title}}</h2>
     <h3>{{game.type}}</h3>
     <h3>{{game.time}}</h3>
     <h3>{{game.location}}</h3>
     <h3 class="name">Created by, {{game.username}} !</h3>
+    <ng-map class="gov-map" zoom="15" center="{{ctrl.currentLocation}}">
+      <!-- <map-data load-geo-json="events.json"></map-data> -->
+      <marker position="{{ctrl.currentLocation}}" title="Your Location" animation="Animation.BOUNCE"></marker>
+      <marker position="{{game.latlong}}" title="game" animation="Animation.BOUNCE"></marker>
+    </ng-map>
   </div>
-</div>
-
-
-<div class="map-container">
-  <ng-map class="gov-map" zoom="10" center="51.5112139, -0.1198244">
-    <map-data load-geo-json="events.json"></map-data>
-  </ng-map>
 </div>

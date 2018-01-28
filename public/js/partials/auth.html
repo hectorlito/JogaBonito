@@ -1,24 +1,24 @@
-<div ng-if='ctrl.clickSignIn'>
+<div ng-if='ctrl.clickSignIn' class="aroundLogReg">
   <h3 class="close" ng-click="ctrl.closelogreg()">x</h3>
-  <div ng-if="ctrl.LoginBox == true">
-    <p>Log In</p>
-    <form ng-submit='ctrl.loginUser()'>
-      <input class="input__username" type="text" placeholder="Username" ng-model="ctrl.loginForm.username" />
-      <input class="input__password" type="password" placeholder="Password" ng-model="ctrl.loginForm.password" />
+  <div ng-if="ctrl.LoginBox == true" class="signIn">
+    <p class="formtitle">Log In</p>
+    <form class="form" ng-submit='ctrl.loginUser()'>
+      <input class="inputBox" type="text" placeholder="Username" ng-model="ctrl.loginForm.username" />
+      <input class="inputBox" type="password" placeholder="Password" ng-model="ctrl.loginForm.password" />
       <input class="button" type="submit" value="Log In" />
     </form>
-    <p>Don't have an account? <span ng-click="ctrl.LoginBox = false">Register</span></p>
+    <p class="formtitle">Don't have an account? <span ng-click="ctrl.LoginBox = false">Register</span></p>
   </div>
 
-  <div ng-if="ctrl.LoginBox == false">
-    <p>Register</p>
+  <div ng-if="ctrl.LoginBox == false" class="signIn">
+    <p class="formtitle">Register</p>
     <form ng-submit='ctrl.registerUser()'>
       <input type="text" placeholder="Username" ng-model="ctrl.newUserForm.username" />
       <input type="password" placeholder="Password" ng-model="ctrl.newUserForm.password" />
       <input type="text" ng-model="ctrl.newUserForm.avatar" placeholder="Image URL">
       <input class="button" type="submit" value="Register" />
     </form>
-    <p>Already have an account? <span ng-click="ctrl.LoginBox = true">Login</span></p>
+    <p class="formtitle">Already have an account? <span ng-click="ctrl.LoginBox = true">Login</span></p>
   </div>
 
 </div>

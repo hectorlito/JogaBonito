@@ -1,21 +1,25 @@
-/* The navigation bar */
-.title{
-  /* height: 100%;
- width: 100%;
- display: flex;
- position: fixed;
- align-items: center;
- justify-content: center;
- font-family: sans-serif; */
+@font-face {
+  font-family: 'moonhouse';
+  src:url("./fonts/moonhouse.ttf");
 }
 
+/************ The navigation bar ***********/
+body{
+  border: 2px solid purple;
+}
+.container{
+  width: 100%;
+  margin: auto;
+  border: 1px solid red;
+  margin-top: 50px;
+}
 .navbar {
     overflow: hidden;
-    background: #0A002B;
-    /* position: fixed;  */
-    margin: auto;
+    background:#BB0000;
+    /* #0A002B */
     top: 0;
-    width: 50%;
+    margin: 0 auto;
+    width: 100%;
 }
 
 /* Links inside the navbar */
@@ -23,10 +27,12 @@
 
     float: left;
     display: block;
-    color: #f2f2f2;
+    color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-family: 'Wallpoet', cursive;
+    font-size: 15px;
 }
 
 .name {
@@ -58,4 +64,68 @@
   width: 100%;
   height: 100%;
 }
-/* MODAL */
+
+.title{
+  text-align: center;
+  border: 1px solid green;
+  margin:45% auto;
+  color: #BB0000;
+  font-family: "moonhouse";
+  font-size: 100px;
+}
+/**************** modals ***********/
+
+
+.aroundLogReg ,.createGame{
+z-index: 1000;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+position: fixed;
+background-color: rgba(0,0,0, .9);
+/* rgba(13,0,38, .9) */
+}
+
+.signIn ,.postTitle{
+  width: 40%;
+  height: 40%;
+  background-color: white;
+  margin: 30vh auto;
+}
+
+p, .createtitle{
+  color:#BB0000;
+  font-family: 'Wallpoet', cursive;
+  font-size: 25px;
+}
+.createtitle{
+  text-align: center;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin:auto;
+}
+
+.inputBox{
+  margin: 10px auto;
+  width: 100%;
+}
+
+.formtitle {
+  font-size: 20px;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+/*  */
