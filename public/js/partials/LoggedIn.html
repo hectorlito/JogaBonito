@@ -1,0 +1,20 @@
+<div ng-include=" '/js/partials/profile.html' ">
+</div>
+<div ng-include=" '/js/partials/all.html' "></div>
+<div ng-include=" '/js/partials/createagame.html' "></div>
+
+<div>
+  <div class="allGames" ng-repeat='game in ctrl.games' class="map-container">
+    <h2 class="userinfo">{{game.title}}</h2>
+    <h3 class="userinfo">{{game.type}}</h3>
+    <h3 class="userinfo">{{game.time}}</h3>
+    <h3 class="userinfo">{{game.location}}</h3>
+    <h3 class="name">Created by, {{game.username}} !</h3>
+    <ng-map class="gov-map" zoom="13" center="{{ctrl.currentLocation}}">
+      <!-- <map-data load-geo-json="events.json"></map-data> -->
+      <marker position="{{ctrl.currentLocation}}" title="Your Location" ></marker>
+      <marker position="{{game.latlong}}" title="game" animation="Animation.BOUNCE"></marker>
+    </ng-map>
+    <hr class="style-two">
+  </div>
+</div>

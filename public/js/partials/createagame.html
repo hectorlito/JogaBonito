@@ -1,0 +1,22 @@
+<div ng-if="ctrl.createGame" class="createGame">
+  <h3 class="close" ng-click="ctrl.closeCreate()">x</h3>
+  <div class="postTitle">
+    <h2 class="createtitle">Post a Game</h3>
+    <h4 class="createtitle">Title</h4>
+    <form class="form"ng-submit='ctrl.creategames(newGameForm)'>
+      <input  type="text" name="" value="Name?" ng-model="newGameForm.title" required>
+    <h4 class="createtitle">Type of game</h4>
+      <select ng-model="newGameForm.type" required>
+        <option value="11v11">11v11</option>
+        <option value="7v7">7v7</option>
+        <option value="5v5">5v5</option>
+        <option value="3v3">3v3</option>
+      </select>
+    <h4 class="createtitle">Game Time</h4>
+      <input type="text" name="" value="What time?" ng-model="newGameForm.time" required>
+    <h3 class="createtitle">Location</h3>
+      <input class="inputBox" type="text" name="" value="What field?" ng-model="newGameForm.location" required>
+      <input class="button" type="submit" value="Create Game" />
+      </form>
+  </div>
+</div>
