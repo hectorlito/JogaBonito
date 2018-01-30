@@ -57,17 +57,20 @@
 .main {
     margin-top: 30px; /* Add a top margin to avoid content overlay */
 }
+.allGames{
+  /* border: 1px green solid; */
+}
 
 
 .map-container{
   width: 70%;
   height: 300px;
-  /* border: 1px black solid; */
+  /* border: 1px green solid; */
 }
 .gov-map{
   width: 70%;
   height: 100%;
-  margin: 20px auto;
+  margin: 0 auto 70px auto;
 }
 
 .title{
@@ -155,8 +158,15 @@ hr.style-two {
     /*background-color: #729f98;*/
 }
 
+.gameName{
+  font-family: 'Arimo', sans-serif;
+  font-weight: bold;
+  text-decoration: underline;
+}
 
-
+.gameDeets{
+  font-size: 16px;
+}
 
 
 
