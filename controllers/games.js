@@ -21,7 +21,6 @@ router.post('/create', async (req, res) => {
             // '1600 Amphitheatre Parkway, Mountain View, CA'
           }).asPromise()
           .then(async (response) => {
-            console.log(response.json.results);
               formattedAddress = response.json.results[0].formatted_address;
               latlng = [response.json.results[0].geometry.location.lat, response.json.results[0].geometry.location.lng];
               const game = await Game.create(Object.assign(req.body.game, {
@@ -30,17 +29,17 @@ router.post('/create', async (req, res) => {
               })); res.status(201).json(game);
           })
           .catch((err) => {
-            console.log(err);
+            res.status(400).json({
+              err: err.message
+            });
           });
         }
         catch (e) {
-          console.log(e);
           res.status(400).json({
-            err: err.message + 'cheeese stand out '
+            err: err.message
           });
         }
       });
-
     router.put('/:id', async (req, res) => {
       try {
         const updatedGame = await Game.findByIdAndUpdate(req.params.id, req.body, {
