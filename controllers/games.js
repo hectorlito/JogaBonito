@@ -18,7 +18,6 @@ router.post('/create', async (req, res) => {
         let latlng;
         await googleMapsClient.geocode({
             address: req.body.game.location
-            // '1600 Amphitheatre Parkway, Mountain View, CA'
           }).asPromise()
           .then(async (response) => {
               formattedAddress = response.json.results[0].formatted_address;

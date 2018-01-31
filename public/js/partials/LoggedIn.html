@@ -9,7 +9,7 @@
     <h3 class="userinfo gameDeets">{{game.type}}</h3>
     <h3 class="userinfo gameDeets">Time: {{game.time}}</h3>
     <h3 class="userinfo gameDeets">Place: {{game.location}}</h3>
-    <h3 class="name">Created by, {{game.username}} !</h3>
+    <h3 class="userinfo">Created by, {{game.username}} !</h3>
     <ng-map class="gov-map" zoom="13" center="{{ctrl.currentLocation}}">
       <marker position="{{ctrl.currentLocation}}" title="Your Location" ></marker>
       <marker position="{{game.latlong}}" title="game" animation="Animation.BOUNCE"></marker>

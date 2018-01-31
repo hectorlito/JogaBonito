@@ -15,6 +15,7 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
   this.gameedit = false;
   this.currentLocation = '';
 
+
   navigator
     .geolocation
     .getCurrentPosition((res) => {
@@ -23,11 +24,11 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
       `${res.coords.latitude}, ${res.coords.longitude}`
     });
 
-  NgMap.getMap().then(function(map) {
-    console.log(map.getCenter());
-    console.log('markers', map.markers);
-    console.log('shapes', map.shapes);
-  });
+  // NgMap.getMap().then(function(map) {
+  //   console.log(map.getCenter());
+  //   console.log('markers', map.markers);
+  //   console.log('shapes', map.shapes);
+  // });
 
   // ctrl functions
   //-------------Login Modal------------------
@@ -44,7 +45,6 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
   //--------------Create a Game modal------------
   this.openCreate = () => {
     this.createGame = true;
-    console.log("i clicked on creategame: ", this.createGame);
   }
 
   this.closeCreate = () => {
@@ -152,7 +152,7 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
         this.loginForm = {};
         this.error = null;
         this.closelogreg();
-        this.initMap();
+        // this.initMap();
       }, ex => {
         this.loginError = ex.statusText;
       })
@@ -214,9 +214,8 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
         }
       }
     }).then((response) => {
-      this.games.shift(response.data);
+      this.games.unshift(response.data);
       this.closeCreate();
-      // this.newGameForm = [];
     }, ex => {
       this.gameError = 'Incorrect game data?';
     }).catch(err => this.error = '');
