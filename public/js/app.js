@@ -214,7 +214,7 @@ app.controller("MainController", ["$http", 'NgMap', function($http, NgMap) {
         }
       }
     }).then((response) => {
-      this.games.push(response.data);
+      this.games.shift(response.data);
       this.closeCreate();
       // this.newGameForm = [];
     }, ex => {
