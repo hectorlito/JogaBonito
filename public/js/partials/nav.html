@@ -2,7 +2,7 @@
 <a href="" ng-click='ctrl.openGames()'>All Games</a>
 <a href="" ng-click='ctrl.openCreate()'>Create a game</a>
 <a href="" ng-click='ctrl.openPlayers()'>All Players</a>
-<a href="" ng-if='ctrl.user.logged !==' ng-click='ctrl.openlogreg()'>Sign In</a>
+<a href="" ng-if='ctrl.user.logged !=' ng-click='ctrl.openlogreg()'>Sign In</a>
 <h3  ng-if='ctrl.user.logged' class="name">Hi, {{ctrl.user.username}} !</h3>
 <a href="#" ng-if='ctrl.user.logged' ng-click='ctrl.logoutUser()'>Logout</a>
 </div>
